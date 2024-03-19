@@ -42,7 +42,7 @@ public class EnemyMovementScript : MonoBehaviour
                     rb.velocity = new Vector2(speed, rb.velocity.y);
                 }
 
-                if (wayPoint1_1.transform.position.x-.3f >= transform.position.x ^ transform.position.x <= wayPoint1_1.transform.position.x+.3f)
+                if (wayPoint1_1.transform.position.x-.2f >= transform.position.x ^ transform.position.x <= wayPoint1_1.transform.position.x+.2f)
                 {
                     transform.position = new Vector2(wayPoint1_1.transform.position.x, transform.position.y);
                     rb.velocity = new Vector2(0, 0);
