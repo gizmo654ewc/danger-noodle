@@ -166,6 +166,10 @@ PrefabInstance:
       propertyPath: jump
       value: 1300
       objectReference: {fileID: 0}
+    - target: {fileID: 3265116520674249951, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: fireWait
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4348089472677156868, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
       propertyPath: m_Name
       value: Snake
