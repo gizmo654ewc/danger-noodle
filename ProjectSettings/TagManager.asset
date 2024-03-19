@@ -10,6 +10,10 @@ TagManager:
   - Waypoint_1
   - Ground
   - Waypoint_2
+  - KillPlane
+  - Waypoint_3
+  - Waypoint_3_S
+  - Waypoint_4
   layers:
   - Default
   - TransparentFX
