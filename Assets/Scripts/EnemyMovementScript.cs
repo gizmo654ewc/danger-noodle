@@ -5,11 +5,7 @@ using UnityEngine;
 public class EnemyMovementScript : MonoBehaviour
 {
     //waypoints
-    [SerializeField] private GameObject spawnPoint;
-    [SerializeField] private GameObject wayPoint1_1;
-    [SerializeField] private GameObject wayPoint1_2;
-    //[SerializeField] private GameObject wayPoint2_1;
-    //[SerializeField] private GameObject wayPoint2_2;
+    private GameObject wayPoint1;
 
     Rigidbody2D rb;
 
@@ -21,11 +17,15 @@ public class EnemyMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = spawnPoint.transform.position;
+        wayPoint1 = GameObject.FindWithTag("Waypoint_1");
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(new Vector2(0, 1000));
+        if (currentPoint == 0)
+        {
+            rb.AddForce(new Vector2(0, 1000));
+        }
     }
-
+    
+    
     // Update is called once per frame
     void Update()
     {
@@ -33,7 +33,7 @@ public class EnemyMovementScript : MonoBehaviour
         {
             if (!climbing)
             {
-                if (transform.position.x > wayPoint1_1.transform.position.x)
+                if (transform.position.x > wayPoint1.transform.position.x)
                 {
                     rb.velocity = new Vector2(-speed, rb.velocity.y);
                 }
@@ -42,9 +42,9 @@ public class EnemyMovementScript : MonoBehaviour
                     rb.velocity = new Vector2(speed, rb.velocity.y);
                 }
 
-                if (wayPoint1_1.transform.position.x-.2f >= transform.position.x ^ transform.position.x <= wayPoint1_1.transform.position.x+.2f)
+                if (wayPoint1.transform.position.x-.2f >= transform.position.x ^ transform.position.x <= wayPoint1.transform.position.x+.2f)
                 {
-                    transform.position = new Vector2(wayPoint1_1.transform.position.x, transform.position.y);
+                    transform.position = new Vector2(wayPoint1.transform.position.x, transform.position.y);
                     rb.velocity = new Vector2(0, 0);
                     climbing = true;
                 }
@@ -52,9 +52,9 @@ public class EnemyMovementScript : MonoBehaviour
             else
             {
                 rb.velocity = new Vector2(rb.velocity.x, speed);
-                if (wayPoint1_2.transform.position.y < transform.position.y)
+                if (wayPoint1.transform.position.y < transform.position.y)
                 {
-                    transform.position = new Vector2(transform.position.x, wayPoint1_2.transform.position.y);
+                    transform.position = new Vector2(transform.position.x, wayPoint1.transform.position.y);
                     rb.velocity = new Vector2(0, 0);
                     climbing = false;
                     currentPoint = 1;
@@ -67,4 +67,14 @@ public class EnemyMovementScript : MonoBehaviour
 
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Shot")
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
+    
 }
