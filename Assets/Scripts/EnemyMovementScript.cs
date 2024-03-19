@@ -27,7 +27,7 @@ public class EnemyMovementScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (currentPoint == 0)
         {
-            rb.AddForce(new Vector2(0, 1000));
+            rb.AddForce(new Vector2(0, 1400));
         }
     }
     
@@ -50,6 +50,7 @@ public class EnemyMovementScript : MonoBehaviour
         if (collision.tag == "Shot")
         {
             Destroy(collision.gameObject);
+
         }
     }
 
