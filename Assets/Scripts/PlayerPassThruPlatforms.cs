@@ -9,7 +9,7 @@ public class PlayerPassThruPlatforms : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             if (currentPlat != null)
             {
