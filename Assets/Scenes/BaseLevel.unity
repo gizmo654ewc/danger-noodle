@@ -123,6 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &75171950
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3265116520674249951, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: jump
+      value: 1300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348089472677156868, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: m_Name
+      value: Snake
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068457962400363792, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068457962400363792, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068457962400363792, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068457962400363792, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068457962400363792, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068457962400363792, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068457962400363792, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068457962400363792, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068457962400363792, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8068457962400363792, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
 --- !u!1 &236814537
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,9 +195,9 @@ GameObject:
   - component: {fileID: 236814538}
   - component: {fileID: 236814539}
   - component: {fileID: 236814540}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider F7
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,7 +247,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 3.1202986, y: -0.43860304}
   m_SpriteTilingProperty:
@@ -231,9 +292,9 @@ GameObject:
   - component: {fileID: 236988974}
   - component: {fileID: 236988975}
   - component: {fileID: 236988976}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider F5
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +344,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 3.1202986, y: -0.43860304}
   m_SpriteTilingProperty:
@@ -328,9 +389,9 @@ GameObject:
   - component: {fileID: 412095619}
   - component: {fileID: 412095620}
   - component: {fileID: 412095621}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider F8
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -380,7 +441,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 2.5491393, y: -0.41897964}
   m_SpriteTilingProperty:
@@ -425,9 +486,9 @@ GameObject:
   - component: {fileID: 456717494}
   - component: {fileID: 456717495}
   - component: {fileID: 456717496}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider F6 A
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -477,7 +538,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 1.9687419, y: -0.43860304}
   m_SpriteTilingProperty:
@@ -511,6 +572,37 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!1 &587215914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 587215915}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Spawner
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &587215915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587215914}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.9, y: -1.94, z: -0.024922635}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &657795358
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,9 +614,9 @@ GameObject:
   - component: {fileID: 657795359}
   - component: {fileID: 657795360}
   - component: {fileID: 657795361}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider F4
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -574,7 +666,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 3.1202986, y: -0.43860304}
   m_SpriteTilingProperty:
@@ -3387,9 +3479,9 @@ GameObject:
   - component: {fileID: 838814471}
   - component: {fileID: 838814472}
   - component: {fileID: 838814473}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider F6 B
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3439,7 +3531,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.44170386, y: -0.43860304}
   m_SpriteTilingProperty:
@@ -3573,9 +3665,9 @@ GameObject:
   - component: {fileID: 1471641794}
   - component: {fileID: 1471641795}
   - component: {fileID: 1471641796}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider F2
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3625,7 +3717,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.8198681, y: -0.43860304}
   m_SpriteTilingProperty:
@@ -3669,9 +3761,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1497683697}
   - component: {fileID: 1497683698}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider F1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4641,9 +4733,9 @@ GameObject:
   - component: {fileID: 1817831657}
   - component: {fileID: 1817831658}
   - component: {fileID: 1817831659}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider F4.5
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4693,7 +4785,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.44170386, y: -0.43860304}
   m_SpriteTilingProperty:
@@ -4738,9 +4830,9 @@ GameObject:
   - component: {fileID: 1955250193}
   - component: {fileID: 1955250194}
   - component: {fileID: 1955250195}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider F3 A
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4790,7 +4882,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 1.9687419, y: -0.43860304}
   m_SpriteTilingProperty:
@@ -13909,9 +14001,9 @@ GameObject:
   - component: {fileID: 2071260178}
   - component: {fileID: 2071260179}
   - component: {fileID: 2071260180}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider F3 B
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13961,7 +14053,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.44170386, y: -0.43860304}
   m_SpriteTilingProperty:
@@ -14056,7 +14148,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 12.24
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -14081,7 +14173,7 @@ Transform:
   m_GameObject: {fileID: 2106085517}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 6.23, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14095,3 +14187,5 @@ SceneRoots:
   - {fileID: 958085290}
   - {fileID: 1563477468}
   - {fileID: 1422403760}
+  - {fileID: 75171950}
+  - {fileID: 587215915}

@@ -8,6 +8,7 @@ TagManager:
   - Spawner
   - Shot
   - Waypoint_1
+  - Ground
   layers:
   - Default
   - TransparentFX
