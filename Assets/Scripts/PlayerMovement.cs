@@ -67,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
             facingRight = true;
-            Debug.Log("switch");
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
