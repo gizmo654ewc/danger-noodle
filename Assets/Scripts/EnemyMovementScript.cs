@@ -87,9 +87,12 @@ public class EnemyMovementScript : MonoBehaviour
         if (collision.tag == "Shot")
         {
             Destroy(collision.gameObject);
-            hit = true;
-            rb.velocity = Vector2.zero;
-            StartCoroutine(DisableCollision());
+            if (!hit)
+            {
+                rb.velocity = Vector2.zero;
+                StartCoroutine(DisableCollision());
+                hit = true;
+            }
         }
     }
 
@@ -157,18 +160,16 @@ public class EnemyMovementScript : MonoBehaviour
             if (climbing)
             {
                 climbing = false;
-                BoxCollider2D platformCollider = currentPlat.GetComponent<BoxCollider2D>();
-                Physics2D.IgnoreCollision(enemyCollider, platformCollider);
-                yield return new WaitForSeconds(.8f);
-                Physics2D.IgnoreCollision(enemyCollider, platformCollider, false);
+                gameObject.layer = 9;
+                yield return new WaitForSeconds(.5f);
+                gameObject.layer = 7;
             }
             else
             {
                 climbing = false;
-                BoxCollider2D platformCollider = currentPlat.GetComponent<BoxCollider2D>();
-                Physics2D.IgnoreCollision(enemyCollider, platformCollider);
-                yield return new WaitForSeconds(.5f);
-                Physics2D.IgnoreCollision(enemyCollider, platformCollider, false);
+                gameObject.layer = 9;
+                yield return new WaitForSeconds(.35f);
+                gameObject.layer = 7;
             }
         }
         climbing = false;
