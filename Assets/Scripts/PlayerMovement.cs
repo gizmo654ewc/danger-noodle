@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private bool facingRight = true;
     [SerializeField] private float jump;
     [SerializeField] private float speed;
+    [SerializeField] private float fireWait;
+    private float currWait = 0;
 
     Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -20,11 +22,17 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currWait = fireWait;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (currWait > 0)
+        {
+            currWait -= Time.deltaTime;
+        }
+
         FacingRight();
         rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
 
@@ -44,15 +52,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            GameObject shot = Instantiate(shotPrefab, emitter.transform.position, Quaternion.identity);
-            SnakeBullet sb = shot.gameObject.GetComponent<SnakeBullet>();
-            if (facingRight)
+            if (currWait <= 0)
             {
-                sb.ShootRight();
-            }
-            else
-            {
-                sb.ShootLeft();
+                GameObject shot = Instantiate(shotPrefab, emitter.transform.position, Quaternion.identity);
+                SnakeBullet sb = shot.gameObject.GetComponent<SnakeBullet>();
+                if (facingRight)
+                {
+                    sb.ShootRight();
+                }
+                else
+                {
+                    sb.ShootLeft();
+                }
+                currWait = fireWait;
             }
         }
     }
