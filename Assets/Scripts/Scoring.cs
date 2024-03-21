@@ -4,22 +4,29 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Scoring : TextMeshProUGUI
+public class Scoring : MonoBehaviour
 {
 
     public Text scoreText;
-    public float scoreCount;
+    public int scoreCount;
+    private GameObject textRead;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        scoreText = textRead.GetComponent<Text>();
+        scoreCount = 0;
+        scoreText.text = "Score : " + scoreCount;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D DeathPlane)
     {
-        scoreText.text = "Score: " + Mathf.Round(scoreCount);
+        if(DeathPlane.tag == "KillPlane")
+        {
+            scoreCount += 100;
+            scoreText.text = "Score" + scoreCount;
+        }
     }
 }
