@@ -98,6 +98,10 @@ public class EnemyController : MonoBehaviour
             {
                 randSpawn = Random.Range(0, 6);
             }
+            else if (scoreCount >= 2000)
+            {
+                randSpawn = Random.Range(0, 6);
+            }
             currNum = randSpawn;
             Debug.Log(currNum);
             if (currNum == 0)
