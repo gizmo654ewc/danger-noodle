@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private float currWait = 0;
 
     Rigidbody2D rb;
+    SpriteRenderer p_SpriteRenderer;
+    [SerializeField] private Animator pAnim;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject shotPrefab;
@@ -22,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        pAnim = GetComponent<Animator>();
+        p_SpriteRenderer = GetComponent<SpriteRenderer>();
         currWait = fireWait;
     }
 
@@ -34,7 +38,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         FacingRight();
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
+        // Required making horizontalInput float to make movement animation
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+        pAnim.SetFloat("moveSpeed", Mathf.Abs(horizontalInput));
 
         if (facingRight)
         {
@@ -48,7 +55,39 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded() && rb.velocity.y == 0)
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
+            //pAnim.SetBool("isJumping", true);
+            pAnim.SetTrigger("Jumping");
         }
+        else
+        {
+            //pAnim.SetBool("isJumping", false);
+        }
+
+
+        //Set yVelocity in animator
+        pAnim.SetFloat("yVelo", rb.velocity.y);
+        
+        // Animation grounded boolean
+        if (IsGrounded())
+        {
+            pAnim.SetBool("isGround", true);
+            //pAnim.SetBool("isJumping", false);
+        }
+        else
+        {
+            pAnim.SetBool("isGround", false);
+        }
+
+        // SpriteFlip 
+        if (facingRight)
+        {
+            p_SpriteRenderer.flipX = false;
+        }
+        else
+        {
+            p_SpriteRenderer.flipX = true;
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
