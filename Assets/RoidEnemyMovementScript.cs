@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class EnemyMovementScript : MonoBehaviour
+public class RoidEnemyMovementScript : MonoBehaviour
 {
     //shot system
     [SerializeField] private GameObject shotPrefab;
@@ -45,11 +45,10 @@ public class EnemyMovementScript : MonoBehaviour
     public int currentPoint;
     private bool climbing = false;
     private int chooser;
-    private bool hit = false;
-    private bool doublehit = false;
+    private bool stop;
     public bool s3 = false;
 
-    //hit stuff
+    //stop stuff
     private GameObject currentPlat;
     [SerializeField] private BoxCollider2D enemyCollider;
 
@@ -98,11 +97,13 @@ public class EnemyMovementScript : MonoBehaviour
         wayPointFinal = GameObject.FindWithTag("Waypoint_Final");
 
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(new Vector2(0, 1400));
+
+        stop = true;
+        StartCoroutine(Punch());
 
     }
-    
-    
+
+
     // Update is called once per frame
     void Update()
     {
@@ -120,7 +121,7 @@ public class EnemyMovementScript : MonoBehaviour
             currWaitTime = 5;
         }
 
-        if (!hit)
+        if (!stop)
         {
             if (currentPoint == 0)
             {
@@ -175,16 +176,11 @@ public class EnemyMovementScript : MonoBehaviour
         if (collision.tag == "Shot")
         {
             Destroy(collision.gameObject);
-            if (!hit)
+            if (!stop)
             {
                 rb.velocity = Vector2.zero;
-                hit = true;
                 StartCoroutine(DisableCollision());
-            }
-            else
-            {
-                rb.velocity = Vector2.zero;
-                hit = true;
+                stop = true;
             }
         }
     }
@@ -233,14 +229,14 @@ public class EnemyMovementScript : MonoBehaviour
     }
 
 
-    //hit stuff
+    //stop stuff
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Platform") ^ collision.gameObject.CompareTag("Ground"))
         {
             currentPlat = collision.gameObject;
         }
-        
+
         if (collision.gameObject.CompareTag("KillPlane"))
         {
             Debug.Log("did it");
@@ -264,25 +260,18 @@ public class EnemyMovementScript : MonoBehaviour
             {
                 climbing = false;
                 gameObject.layer = 9;
-                yield return new WaitForSeconds(.85f);
+                yield return new WaitForSeconds(.5f);
             }
             else
             {
                 climbing = false;
                 gameObject.layer = 9;
-                if (!doublehit)
-                {
-                    yield return new WaitForSeconds(.65f);
-                }
-                else
-                {
-                    yield return new WaitForSeconds(1f);
-                }
+                yield return new WaitForSeconds(.35f);
             }
         }
         gameObject.layer = 7;
         climbing = false;
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSeconds(.5f);
         GameObject[] waypoints = { wayPoint1, wayPoint2, wayPoint3, wayPoint4, wayPoint4s2, wayPoint5, wayPoint6, wayPointFinal };
         if (FindClosestWP(waypoints).CompareTag("Waypoint_1"))
         {
@@ -335,7 +324,7 @@ public class EnemyMovementScript : MonoBehaviour
         {
             currentPoint = 6;
         }
-        hit = false;
+        stop = false;
         climbing = false;
     }
 
@@ -359,5 +348,11 @@ public class EnemyMovementScript : MonoBehaviour
             }
         }
         return closestWP;
+    }
+
+    private IEnumerator Punch()
+    {
+        yield return new WaitForSeconds(1f);
+        stop = false;
     }
 }
