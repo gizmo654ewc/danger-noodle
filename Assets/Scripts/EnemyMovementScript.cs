@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class EnemyMovementScript : MonoBehaviour
 {
+    //enemycontroller
+
     //waypoints
     private GameObject wayPoint1;
 
@@ -25,15 +27,16 @@ public class EnemyMovementScript : MonoBehaviour
 
     private GameObject wayPoint5;
     private GameObject wayPoint6;
+    private GameObject wayPointFinal;
 
     Rigidbody2D rb;
 
     public float speed;
-    public int currentPoint = 0;
+    public int currentPoint;
     private bool climbing = false;
     private int chooser;
     private bool hit = false;
-    private bool s3 = false;
+    public bool s3 = false;
 
     //hit stuff
     private GameObject currentPlat;
@@ -43,6 +46,8 @@ public class EnemyMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        //waypoints
         wayPoint1 = GameObject.FindWithTag("Waypoint_1");
 
         wayPoint2s = GameObject.FindGameObjectsWithTag("Waypoint_2");
@@ -73,11 +78,11 @@ public class EnemyMovementScript : MonoBehaviour
 
         wayPoint6 = GameObject.FindWithTag("Waypoint_6");
 
+        wayPointFinal = GameObject.FindWithTag("Waypoint_Final");
+
         rb = GetComponent<Rigidbody2D>();
-        if (currentPoint == 0)
-        {
-            rb.AddForce(new Vector2(0, 1400));
-        }
+        rb.AddForce(new Vector2(0, 1400));
+
     }
     
     
@@ -86,16 +91,16 @@ public class EnemyMovementScript : MonoBehaviour
     {
         if (!hit)
         {
-            if (currentPoint <= 0)
+            if (currentPoint == 0)
             {
                 ClimbTo(wayPoint1);
             }
-            if (currentPoint == 1)
+            else if (currentPoint == 1)
             {
                 s3 = false;
                 ClimbTo(wayPoint2);
             }
-            if (currentPoint == 2)
+            else if (currentPoint == 2)
             {
                 if (s3)
                 {
@@ -106,7 +111,7 @@ public class EnemyMovementScript : MonoBehaviour
                     ClimbTo(wayPoint3);
                 }
             }
-            if (currentPoint == 3)
+            else if (currentPoint == 3)
             {
                 if (currWayPoint4 == wayPoint4s1)
                 {
@@ -114,14 +119,22 @@ public class EnemyMovementScript : MonoBehaviour
                 }
                 ClimbTo(currWayPoint4);
             }
-            if (currentPoint == 4)
+            else if (currentPoint == 4)
             {
                 altRoute = false;
                 ClimbTo(wayPoint5);
             }
-            if (currentPoint == 5)
+            else if (currentPoint == 5)
             {
                 ClimbTo(wayPoint6);
+            }
+            else if (currentPoint == 6)
+            {
+                ClimbTo(wayPointFinal);
+            }
+            else if (currentPoint >= 7)
+            {
+
             }
         }
     }
@@ -213,22 +226,19 @@ public class EnemyMovementScript : MonoBehaviour
             {
                 climbing = false;
                 gameObject.layer = 9;
-                Debug.Log("begin");
                 yield return new WaitForSeconds(.5f);
             }
             else
             {
                 climbing = false;
                 gameObject.layer = 9;
-                Debug.Log("begin");
                 yield return new WaitForSeconds(.35f);
             }
         }
         gameObject.layer = 7;
-        Debug.Log("over");
         climbing = false;
         yield return new WaitForSeconds(.5f);
-        GameObject[] waypoints = { wayPoint1, wayPoint2, wayPoint3, wayPoint4, wayPoint4s2, wayPoint5, wayPoint6 };
+        GameObject[] waypoints = { wayPoint1, wayPoint2, wayPoint3, wayPoint4, wayPoint4s2, wayPoint5, wayPoint6, wayPointFinal };
         if (FindClosestWP(waypoints).CompareTag("Waypoint_1"))
         {
             currentPoint = 0;
@@ -273,6 +283,10 @@ public class EnemyMovementScript : MonoBehaviour
         else if (FindClosestWP(waypoints).CompareTag("Waypoint_6"))
         {
             currentPoint = 5;
+        }
+        else if (FindClosestWP(waypoints).CompareTag("Waypoint_6"))
+        {
+            currentPoint = 6;
         }
         hit = false;
         climbing = false;
