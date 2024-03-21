@@ -1,16 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EnemyMovementScript : MonoBehaviour
 {
     //waypoints
     private GameObject wayPoint1;
+
     private GameObject[] wayPoint2s;
     private GameObject wayPoint2;
+
     private GameObject wayPoint3;
     private GameObject wayPoint3_S;
+
+    private GameObject ANNOYINGFLOOR;
+
     private GameObject wayPoint4;
+    private GameObject wayPoint4s1;
+    private GameObject wayPoint4s2;
+    private GameObject currWayPoint4;
+    private bool altRoute = false;
+
+
+    private GameObject wayPoint5;
+    private GameObject wayPoint6;
 
     Rigidbody2D rb;
 
@@ -38,7 +52,26 @@ public class EnemyMovementScript : MonoBehaviour
         wayPoint3 = GameObject.FindWithTag("Waypoint_3");
         wayPoint3_S = GameObject.FindWithTag("Waypoint_3_S");
 
+        ANNOYINGFLOOR = GameObject.FindWithTag("Waypoint_3_FLOOR");
+
         wayPoint4 = GameObject.FindWithTag("Waypoint_4");
+        wayPoint4s1 = GameObject.FindWithTag("Waypoint_4s1");
+        wayPoint4s2 = GameObject.FindWithTag("Waypoint_4s2");
+        chooser = Random.Range(0, 2);
+        if (chooser == 0)
+        {
+            currWayPoint4 = wayPoint4;
+        }
+        else if (chooser == 1)
+        {
+            currWayPoint4 = wayPoint4s1;
+        }
+
+
+
+        wayPoint5 = GameObject.FindWithTag("Waypoint_5");
+
+        wayPoint6 = GameObject.FindWithTag("Waypoint_6");
 
         rb = GetComponent<Rigidbody2D>();
         if (currentPoint == 0)
@@ -55,7 +88,6 @@ public class EnemyMovementScript : MonoBehaviour
         {
             if (currentPoint <= 0)
             {
-                s3 = false;
                 ClimbTo(wayPoint1);
             }
             if (currentPoint == 1)
@@ -76,8 +108,20 @@ public class EnemyMovementScript : MonoBehaviour
             }
             if (currentPoint == 3)
             {
-                s3 = false;
-                ClimbTo(wayPoint4);
+                if (currWayPoint4 == wayPoint4s1)
+                {
+                    altRoute = true;
+                }
+                ClimbTo(currWayPoint4);
+            }
+            if (currentPoint == 4)
+            {
+                altRoute = false;
+                ClimbTo(wayPoint5);
+            }
+            if (currentPoint == 5)
+            {
+                ClimbTo(wayPoint6);
             }
         }
     }
@@ -126,7 +170,15 @@ public class EnemyMovementScript : MonoBehaviour
                 transform.position = new Vector2(transform.position.x, wayPoint.transform.position.y);
                 rb.velocity = Vector2.zero;
                 climbing = false;
-                currentPoint++;
+                if (altRoute)
+                {
+                    altRoute = false;
+                    currWayPoint4 = wayPoint4s2;
+                }
+                else
+                {
+                    currentPoint++;
+                }
             }
         }
     }
@@ -161,35 +213,34 @@ public class EnemyMovementScript : MonoBehaviour
             {
                 climbing = false;
                 gameObject.layer = 9;
+                Debug.Log("begin");
                 yield return new WaitForSeconds(.5f);
-                gameObject.layer = 7;
             }
             else
             {
                 climbing = false;
                 gameObject.layer = 9;
+                Debug.Log("begin");
                 yield return new WaitForSeconds(.35f);
-                gameObject.layer = 7;
             }
         }
+        gameObject.layer = 7;
+        Debug.Log("over");
         climbing = false;
         yield return new WaitForSeconds(.5f);
-        GameObject[] waypoints = { wayPoint1, wayPoint2, wayPoint3, wayPoint4 };
+        GameObject[] waypoints = { wayPoint1, wayPoint2, wayPoint3, wayPoint4, wayPoint4s2, wayPoint5, wayPoint6 };
         if (FindClosestWP(waypoints).CompareTag("Waypoint_1"))
         {
-            Debug.Log("closest is 0");
             currentPoint = 0;
         }
         else if (FindClosestWP(waypoints).CompareTag("Waypoint_2"))
         {
-            Debug.Log("closest is 1");
             currentPoint = 1;
             chooser = Random.Range(0, wayPoint2s.Length);
             wayPoint2 = wayPoint2s[chooser];
         }
         else if (FindClosestWP(waypoints).CompareTag("Waypoint_3"))
         {
-            Debug.Log("closest is 2");
             currentPoint = 2;
             if (transform.position.x < wayPoint3_S.transform.position.x + 3 && transform.position.x > wayPoint3_S.transform.position.x - 1.5f)
             {
@@ -200,17 +251,36 @@ public class EnemyMovementScript : MonoBehaviour
         }
         else if (FindClosestWP(waypoints).CompareTag("Waypoint_4"))
         {
-            Debug.Log("closest is 3");
+            chooser = Random.Range(0, 2);
+            if (chooser == 0)
+            {
+                currWayPoint4 = wayPoint4;
+            }
+            else if (chooser == 1)
+            {
+                currWayPoint4 = wayPoint4s1;
+            }
             currentPoint = 3;
+        }
+        else if (FindClosestWP(waypoints).CompareTag("Waypoint_4s2"))
+        {
+            currentPoint = 3;
+        }
+        else if (FindClosestWP(waypoints).CompareTag("Waypoint_5"))
+        {
+            currentPoint = 4;
+        }
+        else if (FindClosestWP(waypoints).CompareTag("Waypoint_6"))
+        {
+            currentPoint = 5;
         }
         hit = false;
         climbing = false;
-        Debug.Log(currentPoint);
-        Debug.Log(climbing);
     }
 
     private GameObject FindClosestWP(GameObject[] waypoints)
     {
+        ANNOYINGFLOOR = GameObject.FindWithTag("Waypoint_3_FLOOR");
         GameObject closestWP = null;
         float minDist = Mathf.Infinity;
         Vector3 currentPos = transform.position;
@@ -219,7 +289,7 @@ public class EnemyMovementScript : MonoBehaviour
             float dist = Vector2.Distance(new Vector2(0, t.transform.position.y - 5), new Vector2(0, currentPos.y));
             if (t == wayPoint4)
             {
-                dist = Vector2.Distance(new Vector2(0, t.transform.position.y - 8), new Vector2(0, currentPos.y));
+                dist = Vector2.Distance(new Vector2(0, ANNOYINGFLOOR.transform.position.y), new Vector2(0, currentPos.y));
             }
             if (dist < minDist)
             {

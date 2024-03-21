@@ -14,6 +14,11 @@ TagManager:
   - Waypoint_3
   - Waypoint_3_S
   - Waypoint_4
+  - Waypoint_5
+  - Waypoint_6
+  - Waypoint_4s1
+  - Waypoint_4s2
+  - Waypoint_3_FLOOR
   layers:
   - Default
   - TransparentFX
@@ -24,7 +29,7 @@ TagManager:
   - Ground
   - Enemy
   - Player
-  - 
+  - F_Enemy
   - 
   - 
   - 
