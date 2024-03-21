@@ -19,6 +19,8 @@ TagManager:
   - Waypoint_4s1
   - Waypoint_4s2
   - Waypoint_3_FLOOR
+  - Waypoint_Final
+  - Enemy_Controller
   layers:
   - Default
   - TransparentFX
