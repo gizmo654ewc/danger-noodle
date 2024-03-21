@@ -24,7 +24,6 @@ public class EnemyController : MonoBehaviour
         {
             randSpawn = Random.Range(0, spawners.Length);
             spawnPoint = spawners[randSpawn];
-            Debug.Log(randSpawn);
             GameObject enemy = Instantiate(enemy_1, new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y, 0), Quaternion.identity);
             EnemyMovementScript eScript = enemy.GetComponent<EnemyMovementScript>();
             if (randSpawn > 2)
