@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 6778053718402004136}
   - component: {fileID: 6449204717117817876}
   - component: {fileID: 758560650957434792}
-  - component: {fileID: 4926047066693115214}
-  - component: {fileID: 627646159640146698}
+  - component: {fileID: 1404523100229296979}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Enemy_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5999999, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -160,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &4926047066693115214
+--- !u!114 &1404523100229296979
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,23 +168,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2252304560076441205}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 679c1f3a1f68d3e4d97d47a5cf252853, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a73d3f799308de4c9c40500049b3096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  shotPrefab: {fileID: 1403878888399486722, guid: 5c0996eb87fc9984691779721e625a9a, type: 3}
+  waitTimeBeforeShot: 10
+  scoreCount: 150
+  speed: 3
   currentPoint: 0
+  s3: 0
   enemyCollider: {fileID: 6449204717117817876}
---- !u!114 &627646159640146698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2252304560076441205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99729b509f573994a99f33bb2a55e988, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  scoreCount: 0

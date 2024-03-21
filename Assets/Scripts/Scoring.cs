@@ -6,27 +6,23 @@ using UnityEngine.UI;
 
 public class Scoring : MonoBehaviour
 {
-
-    public Text scoreText;
     public int scoreCount;
-    private GameObject textRead;
-
-
+    private GameObject scoreObj;
+    ScoreHolder scoreScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreText = textRead.GetComponent<Text>();
-        scoreCount = 0;
-        scoreText.text = "Score : " + scoreCount;
+        scoreObj = GameObject.FindWithTag("Score");
+        scoreScript = scoreObj.GetComponent<ScoreHolder>();
     }
 
     private void OnTriggerEnter2D(Collider2D DeathPlane)
     {
         if(DeathPlane.tag == "KillPlane")
         {
-            scoreCount += 100;
-            scoreText.text = "Score" + scoreCount;
+            Debug.Log("did it");
+            scoreScript.UpdateScore(scoreCount);
         }
     }
 }

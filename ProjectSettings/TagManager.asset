@@ -21,6 +21,8 @@ TagManager:
   - Waypoint_3_FLOOR
   - Waypoint_Final
   - Enemy_Controller
+  - Score
+  - EnemyShot
   layers:
   - Default
   - TransparentFX
