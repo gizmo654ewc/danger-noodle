@@ -95,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 GameObject shot = Instantiate(shotPrefab, emitter.transform.position, Quaternion.identity);
                 SnakeBullet sb = shot.gameObject.GetComponent<SnakeBullet>();
+                //pAnim.SetTrigger("Shoot");
                 if (facingRight)
                 {
                     sb.ShootRight();
@@ -106,6 +107,17 @@ public class PlayerMovement : MonoBehaviour
                 currWait = fireWait;
             }
         }
+        /*
+        if (Input.GetKeyDown(KeyCode.Z) && Input.GetButtonDown("Jump"))
+        {
+            pAnim.SetBool("isJShot", true);
+            Debug.Log("jShot");
+        }
+        else
+        {
+            pAnim.SetBool("isJShot", false);
+        }
+        */
     }
 
     private bool IsGrounded()
