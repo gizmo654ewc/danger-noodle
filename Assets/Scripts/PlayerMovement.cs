@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D rb;
     SpriteRenderer p_SpriteRenderer;
-    [SerializeField] private Animator pAnim;
+    private Animator pAnim;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject shotPrefab;
@@ -55,23 +55,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded() && rb.velocity.y == 0)
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
-            //pAnim.SetBool("isJumping", true);
             pAnim.SetTrigger("Jumping");
         }
-        else
-        {
-            //pAnim.SetBool("isJumping", false);
-        }
-
-
-        //Set yVelocity in animator
-        pAnim.SetFloat("yVelo", rb.velocity.y);
         
         // Animation grounded boolean
         if (IsGrounded())
         {
             pAnim.SetBool("isGround", true);
-            //pAnim.SetBool("isJumping", false);
         }
         else
         {
@@ -95,7 +85,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 GameObject shot = Instantiate(shotPrefab, emitter.transform.position, Quaternion.identity);
                 SnakeBullet sb = shot.gameObject.GetComponent<SnakeBullet>();
-                //pAnim.SetTrigger("Shoot");
                 if (facingRight)
                 {
                     sb.ShootRight();
@@ -107,20 +96,9 @@ public class PlayerMovement : MonoBehaviour
                 currWait = fireWait;
             }
         }
-        /*
-        if (Input.GetKeyDown(KeyCode.Z) && Input.GetButtonDown("Jump"))
-        {
-            pAnim.SetBool("isJShot", true);
-            Debug.Log("jShot");
-        }
-        else
-        {
-            pAnim.SetBool("isJShot", false);
-        }
-        */
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }

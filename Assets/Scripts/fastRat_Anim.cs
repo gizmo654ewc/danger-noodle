@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharAnim : MonoBehaviour
+public class fastRat_Anim : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
