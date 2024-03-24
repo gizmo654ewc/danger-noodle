@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1894783584377060294}
   - component: {fileID: 1443107010202179892}
   m_Layer: 0
-  m_Name: SnakeShot
+  m_Name: Snake_SHOTs
   m_TagString: Shot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
