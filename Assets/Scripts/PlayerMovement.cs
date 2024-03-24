@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private float currWait = 0;
 
     Rigidbody2D rb;
+    // Animator and Sprite Flipper
+    Animator Snake;
+    SpriteRenderer pSprite;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject shotPrefab;
@@ -25,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        // Animator & Sprite Flip Components
+        Snake = GetComponent<Animator>();
+        pSprite = GetComponent<SpriteRenderer>();
         currWait = fireWait;
     }
 
@@ -61,6 +67,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 GameObject shot = Instantiate(shotPrefab, emitter.transform.position, Quaternion.identity);
                 SnakeBullet sb = shot.gameObject.GetComponent<SnakeBullet>();
+                // Anim for Shoot Trigger
+                Snake.SetTrigger("Shoot");
                 if (facingRight)
                 {
                     sb.ShootRight();
@@ -72,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
                 currWait = fireWait;
             }
         }
+
+        
     }
 
     private bool IsGrounded()
