@@ -113,6 +113,8 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.4037736, g: 0, b: 0.3395326, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 20fede243e7da0b47b524875c3c6df65, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -159,6 +161,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -209,6 +212,10 @@ MonoBehaviour:
   jump: 1200
   speed: 7
   fireWait: 0
+<<<<<<< HEAD
+=======
+  pAnim: {fileID: 0}
+>>>>>>> animations
   groundCheck: {fileID: 6679986430364860023}
   groundLayer:
     serializedVersion: 2

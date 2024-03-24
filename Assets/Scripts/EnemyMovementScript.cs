@@ -40,6 +40,8 @@ public class EnemyMovementScript : MonoBehaviour
     private GameObject wayPointFinal;
 
     Rigidbody2D rb;
+    Animator bRat_Anim;
+    SpriteRenderer bR_SpriteRenderer;
 
     public float speed;
     public int currentPoint;
@@ -100,9 +102,19 @@ public class EnemyMovementScript : MonoBehaviour
 
         wayPointFinal = GameObject.FindWithTag("Waypoint_Final");
 
+        bRat_Anim = GetComponent<Animator>();
+        bR_SpriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+<<<<<<< HEAD
         rb.AddForce(new Vector2(0, 1400));
 
+=======
+        
+        if (currentPoint == 0)
+        {
+            rb.AddForce(new Vector2(0, 1400));
+        }
+>>>>>>> animations
     }
     
     
@@ -188,6 +200,7 @@ public class EnemyMovementScript : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 hit = true;
+                bRat_Anim.SetTrigger("Hurt");
             }
         }
     }
@@ -212,6 +225,11 @@ public class EnemyMovementScript : MonoBehaviour
                 transform.position = new Vector2(wayPoint.transform.position.x, transform.position.y);
                 rb.velocity = Vector2.zero;
                 climbing = true;
+                bRat_Anim.SetBool("isClimbing", true);
+            }
+            else
+            {
+                bRat_Anim.SetBool("isClimbing", false);
             }
         }
         else
