@@ -178,3 +178,5 @@ MonoBehaviour:
   currentPoint: 0
   s3: 0
   enemyCollider: {fileID: 6449204717117817876}
+  fallSoundClip: {fileID: 8300000, guid: 6bfd02af195e9dc459bbe9c12788911f, type: 3}
+  scoreSoundClip: {fileID: 8300000, guid: f506a393998cbb44f94afe8f3cb113fd, type: 3}

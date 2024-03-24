@@ -52,6 +52,9 @@ public class RoidEnemyMovementScript : MonoBehaviour
     private GameObject currentPlat;
     [SerializeField] private BoxCollider2D enemyCollider;
 
+    //enemy audio
+    [SerializeField] private AudioClip scoreSoundClip;
+
 
     // Start is called before the first frame update
     void Start()
@@ -239,6 +242,7 @@ public class RoidEnemyMovementScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("KillPlane"))
         {
+            AudioSource.PlayClipAtPoint(scoreSoundClip, transform.position, 1f);
             Debug.Log("did it");
             scoreScript.UpdateScore(scoreCount);
             Destroy(this.gameObject);

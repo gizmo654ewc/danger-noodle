@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject shotPrefab;
     [SerializeField] private GameObject emitter;
 
+    [SerializeField] private AudioClip jumpSoundClip;
+    [SerializeField] private AudioClip shootSoundClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,11 +50,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded() && rb.velocity.y == 0)
         {
+            AudioSource.PlayClipAtPoint(jumpSoundClip, transform.position, 0.14f);
             rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            AudioSource.PlayClipAtPoint(shootSoundClip, transform.position, 0.085f);
             if (currWait <= 0)
             {
                 GameObject shot = Instantiate(shotPrefab, emitter.transform.position, Quaternion.identity);
