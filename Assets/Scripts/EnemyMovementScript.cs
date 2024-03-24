@@ -105,16 +105,7 @@ public class EnemyMovementScript : MonoBehaviour
         bRat_Anim = GetComponent<Animator>();
         bR_SpriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-<<<<<<< HEAD
         rb.AddForce(new Vector2(0, 1400));
-
-=======
-        
-        if (currentPoint == 0)
-        {
-            rb.AddForce(new Vector2(0, 1400));
-        }
->>>>>>> animations
     }
     
     
