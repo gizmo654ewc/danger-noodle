@@ -216,6 +216,7 @@ MonoBehaviour:
   shotPrefab: {fileID: 282315394566537996, guid: f7102ef72017ac94096cd1c32aa6f624, type: 3}
   emitter: {fileID: 1238678798773659923}
   jumpSoundClip: {fileID: 8300000, guid: f4141f4be7f7a474fb0f04f38dc78d20, type: 3}
+  shootSoundClip: {fileID: 8300000, guid: 7869ebf44291a384683e0e307ee99ebd, type: 3}
 --- !u!114 &2597078307685121169
 MonoBehaviour:
   m_ObjectHideFlags: 0
