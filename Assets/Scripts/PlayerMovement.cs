@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded() && rb.velocity.y == 0)
         {
-            AudioSource.PlayClipAtPoint(jumpSoundClip, transform.position, 0.14f);
+            AudioSource.PlayClipAtPoint(jumpSoundClip, transform.position, 0.24f);
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             // Jump trigger
             Snake.SetTrigger("Jump");
@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            AudioSource.PlayClipAtPoint(shootSoundClip, transform.position, 0.085f);
+            AudioSource.PlayClipAtPoint(shootSoundClip, transform.position, 0.18f);
             if (currWait <= 0)
             {
                 GameObject shot = Instantiate(shotPrefab, emitter.transform.position, Quaternion.identity);
