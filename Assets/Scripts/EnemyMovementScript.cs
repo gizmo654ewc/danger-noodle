@@ -50,6 +50,9 @@ public class EnemyMovementScript : MonoBehaviour
     private bool hit = false;
     private bool doublehit = false;
     public bool s3 = false;
+    private float fuckyoutimer = 180f;
+    private float currFYT;
+    private bool done = false;
 
     //hit stuff
     private GameObject currentPlat;
@@ -62,6 +65,7 @@ public class EnemyMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currFYT = fuckyoutimer;
         currWaitTime = waitTimeBeforeShot;
         //score 
         scoreObj = GameObject.FindWithTag("Score");
@@ -114,6 +118,18 @@ public class EnemyMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currFYT > 0)
+        {
+            currFYT -= Time.deltaTime;
+        }
+        else
+        {
+            if (!done)
+            {
+                speed = speed * 5;
+                done = true;
+            }
+        }
         //shots
         if (currWaitTime > 0)
         {
@@ -130,6 +146,7 @@ public class EnemyMovementScript : MonoBehaviour
 
         if (!hit)
         {
+            gameObject.layer = 7;
             if (currentPoint == 0)
             {
                 ClimbTo(wayPoint1);
@@ -173,8 +190,12 @@ public class EnemyMovementScript : MonoBehaviour
             }
             else if (currentPoint >= 7)
             {
-
+                Debug.Log("beated");
             }
+        }
+        else
+        {
+            gameObject.layer = 9;
         }
     }
 
@@ -187,14 +208,13 @@ public class EnemyMovementScript : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 hit = true;
+                bRat.SetTrigger("Hurt");
+                fRat.SetTrigger("Hurt");
                 StartCoroutine(DisableCollision());
             }
             else
             {
-                rb.velocity = Vector2.zero;
-                hit = true;
-                bRat.SetTrigger("Hurt");
-                fRat.SetTrigger("Hurt");
+                //rb.velocity = Vector2.zero;
             }
         }
     }

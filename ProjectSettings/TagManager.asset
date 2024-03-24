@@ -23,6 +23,7 @@ TagManager:
   - Enemy_Controller
   - Score
   - EnemyShot
+  - Powerup
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GameObject enemy_1;
     [SerializeField] private GameObject enemy_2;
     [SerializeField] private GameObject enemy_3;
+    [SerializeField] private GameObject powerup;
 
     private GameObject spawnPoint;
     public GameObject spawnPoint_0;
@@ -24,10 +25,12 @@ public class EnemyController : MonoBehaviour
     public GameObject spawnPoint_3;
     public GameObject spawnPoint_4;
     public GameObject spawnPoint_5;
+    public GameObject spawnPoint_powerup;
 
     private int randSpawn;
     public int currNum;
     public int currPoint;
+    private bool done = false;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +61,11 @@ public class EnemyController : MonoBehaviour
         else if (scoreCount < 1500)
         {
             waitTimeBeforeSpawn = 1.5f;
+            if (!done)
+            {
+                Instantiate(powerup, new Vector2(spawnPoint_powerup.transform.position.x, spawnPoint_powerup.transform.position.y), Quaternion.identity);
+                done = true;
+            }
         }
         else if (scoreCount < 2000)
         {
@@ -70,6 +78,10 @@ public class EnemyController : MonoBehaviour
         else if (scoreCount < 4000)
         {
             waitTimeBeforeSpawn = 0.9f;
+        }
+        else if (scoreCount < 5000)
+        {
+            waitTimeBeforeSpawn = 0.2f;
         }
 
         if (currWaitTime > 0)

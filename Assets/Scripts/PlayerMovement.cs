@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float fireWait;
     private float currWait = 0;
+    private bool powerup = false;
+    public float powerupTime;
+    private float currPT = 0;
 
     Rigidbody2D rb;
     // Animator and Sprite Flipper
@@ -40,6 +43,15 @@ public class PlayerMovement : MonoBehaviour
         if (currWait > 0)
         {
             currWait -= Time.deltaTime;
+        }
+
+        if (currPT > 0)
+        {
+            currPT -= Time.deltaTime;
+        }
+        else if (currPT < 0.1)
+        {
+            powerup = false;
         }
 
         FacingRight();
@@ -84,6 +96,31 @@ public class PlayerMovement : MonoBehaviour
                 currWait = fireWait;
             }
         }
+        if (Input.GetKey(KeyCode.Z))
+        {
+            if (powerup)
+            {
+                if (currWait > 0)
+                {
+                    currWait -= Time.deltaTime;
+                }
+                else
+                {
+                    GameObject shot = Instantiate(shotPrefab, emitter.transform.position, Quaternion.identity);
+                    SnakeBullet sb = shot.gameObject.GetComponent<SnakeBullet>();
+
+                    if (facingRight)
+                    {
+                        sb.ShootRight();
+                    }
+                    else
+                    {
+                        sb.ShootLeft();
+                    }
+                    currWait = 0.05f;
+                }
+            }
+        }
 
         // Grounded param
         if (IsGrounded())
@@ -120,6 +157,21 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             facingRight = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "EnemyShot")
+        {
+            rb.AddForce(new Vector2(rb.velocity.x, jump/2));
+            Destroy(collision.gameObject);
+        }
+        else if (collision.tag == "Powerup")
+        {
+            powerup = true;
+            currPT += powerupTime;
+            Destroy(collision.gameObject);
         }
     }
 }
