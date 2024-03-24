@@ -5,16 +5,6 @@ using UnityEngine;
 
 public class EnemyMovementScript : MonoBehaviour
 {
-    //shot system
-    [SerializeField] private GameObject shotPrefab;
-    [SerializeField] private float waitTimeBeforeShot;
-    private float currWaitTime;
-
-    //score
-    public int scoreCount;
-    private GameObject scoreObj;
-    ScoreHolder scoreScript;
-
     //waypoints
     private GameObject wayPoint1;
 
@@ -32,40 +22,29 @@ public class EnemyMovementScript : MonoBehaviour
     private GameObject currWayPoint4;
     private bool altRoute = false;
 
-    private GameObject wayPoint5;
 
-    private GameObject[] wayPoint6s;
+    private GameObject wayPoint5;
     private GameObject wayPoint6;
 
-    private GameObject wayPointFinal;
-
     Rigidbody2D rb;
+    Animator bRat_Anim;
+    SpriteRenderer bR_SpriteRenderer;
 
     public float speed;
-    public int currentPoint;
+    public int currentPoint = 0;
     private bool climbing = false;
     private int chooser;
     private bool hit = false;
-    private bool doublehit = false;
-    public bool s3 = false;
+    private bool s3 = false;
 
     //hit stuff
     private GameObject currentPlat;
     [SerializeField] private BoxCollider2D enemyCollider;
 
-    //enemy audio
-    [SerializeField] private AudioClip scoreSoundClip;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        currWaitTime = waitTimeBeforeShot;
-        //score 
-        scoreObj = GameObject.FindWithTag("Score");
-        scoreScript = scoreObj.GetComponent<ScoreHolder>();
-
-        //waypoints
         wayPoint1 = GameObject.FindWithTag("Waypoint_1");
 
         wayPoint2s = GameObject.FindGameObjectsWithTag("Waypoint_2");
@@ -94,47 +73,34 @@ public class EnemyMovementScript : MonoBehaviour
 
         wayPoint5 = GameObject.FindWithTag("Waypoint_5");
 
-        wayPoint6s = GameObject.FindGameObjectsWithTag("Waypoint_6");
-        chooser = Random.Range(0, wayPoint6s.Length);
-        wayPoint6 = wayPoint6s[chooser];
+        wayPoint6 = GameObject.FindWithTag("Waypoint_6");
 
-        wayPointFinal = GameObject.FindWithTag("Waypoint_Final");
-
+        bRat_Anim = GetComponent<Animator>();
+        bR_SpriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(new Vector2(0, 1400));
-
+        
+        if (currentPoint == 0)
+        {
+            rb.AddForce(new Vector2(0, 1400));
+        }
     }
     
     
     // Update is called once per frame
     void Update()
     {
-        //shots
-        if (currWaitTime > 0)
-        {
-            currWaitTime = currWaitTime - Time.deltaTime;
-        }
-        else if (currWaitTime <= 0.1)
-        {
-            if ((Random.Range(0, 10)) == 1)
-            {
-                Instantiate(shotPrefab, transform.position, Quaternion.identity);
-            }
-            currWaitTime = 5;
-        }
-
         if (!hit)
         {
-            if (currentPoint == 0)
+            if (currentPoint <= 0)
             {
                 ClimbTo(wayPoint1);
             }
-            else if (currentPoint == 1)
+            if (currentPoint == 1)
             {
                 s3 = false;
                 ClimbTo(wayPoint2);
             }
-            else if (currentPoint == 2)
+            if (currentPoint == 2)
             {
                 if (s3)
                 {
@@ -145,7 +111,7 @@ public class EnemyMovementScript : MonoBehaviour
                     ClimbTo(wayPoint3);
                 }
             }
-            else if (currentPoint == 3)
+            if (currentPoint == 3)
             {
                 if (currWayPoint4 == wayPoint4s1)
                 {
@@ -153,22 +119,14 @@ public class EnemyMovementScript : MonoBehaviour
                 }
                 ClimbTo(currWayPoint4);
             }
-            else if (currentPoint == 4)
+            if (currentPoint == 4)
             {
                 altRoute = false;
                 ClimbTo(wayPoint5);
             }
-            else if (currentPoint == 5)
+            if (currentPoint == 5)
             {
                 ClimbTo(wayPoint6);
-            }
-            else if (currentPoint == 6)
-            {
-                ClimbTo(wayPointFinal);
-            }
-            else if (currentPoint >= 7)
-            {
-
             }
         }
     }
@@ -181,13 +139,9 @@ public class EnemyMovementScript : MonoBehaviour
             if (!hit)
             {
                 rb.velocity = Vector2.zero;
-                hit = true;
                 StartCoroutine(DisableCollision());
-            }
-            else
-            {
-                rb.velocity = Vector2.zero;
                 hit = true;
+                bRat_Anim.SetTrigger("Hurt");
             }
         }
     }
@@ -212,6 +166,11 @@ public class EnemyMovementScript : MonoBehaviour
                 transform.position = new Vector2(wayPoint.transform.position.x, transform.position.y);
                 rb.velocity = Vector2.zero;
                 climbing = true;
+                bRat_Anim.SetBool("isClimbing", true);
+            }
+            else
+            {
+                bRat_Anim.SetBool("isClimbing", false);
             }
         }
         else
@@ -246,9 +205,6 @@ public class EnemyMovementScript : MonoBehaviour
         
         if (collision.gameObject.CompareTag("KillPlane"))
         {
-            AudioSource.PlayClipAtPoint(scoreSoundClip, transform.position, 1f);
-            Debug.Log("did it");
-            scoreScript.UpdateScore(scoreCount);
             Destroy(this.gameObject);
         }
     }
@@ -268,26 +224,22 @@ public class EnemyMovementScript : MonoBehaviour
             {
                 climbing = false;
                 gameObject.layer = 9;
-                yield return new WaitForSeconds(.85f);
+                Debug.Log("begin");
+                yield return new WaitForSeconds(.5f);
             }
             else
             {
                 climbing = false;
                 gameObject.layer = 9;
-                if (!doublehit)
-                {
-                    yield return new WaitForSeconds(.65f);
-                }
-                else
-                {
-                    yield return new WaitForSeconds(1f);
-                }
+                Debug.Log("begin");
+                yield return new WaitForSeconds(.35f);
             }
         }
         gameObject.layer = 7;
+        Debug.Log("over");
         climbing = false;
-        yield return new WaitForSeconds(.6f);
-        GameObject[] waypoints = { wayPoint1, wayPoint2, wayPoint3, wayPoint4, wayPoint4s2, wayPoint5, wayPoint6, wayPointFinal };
+        yield return new WaitForSeconds(.5f);
+        GameObject[] waypoints = { wayPoint1, wayPoint2, wayPoint3, wayPoint4, wayPoint4s2, wayPoint5, wayPoint6 };
         if (FindClosestWP(waypoints).CompareTag("Waypoint_1"))
         {
             currentPoint = 0;
@@ -332,12 +284,6 @@ public class EnemyMovementScript : MonoBehaviour
         else if (FindClosestWP(waypoints).CompareTag("Waypoint_6"))
         {
             currentPoint = 5;
-            chooser = Random.Range(0, wayPoint6s.Length);
-            wayPoint6 = wayPoint6s[chooser];
-        }
-        else if (FindClosestWP(waypoints).CompareTag("Waypoint_Final"))
-        {
-            currentPoint = 6;
         }
         hit = false;
         climbing = false;
