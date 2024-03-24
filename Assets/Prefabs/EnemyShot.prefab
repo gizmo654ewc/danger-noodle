@@ -8,6 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD:Assets/Prefabs/EnemyShot.prefab
   - component: {fileID: 6350257607870549897}
   - component: {fileID: 8813418675701316979}
   - component: {fileID: 5776118306540690868}
