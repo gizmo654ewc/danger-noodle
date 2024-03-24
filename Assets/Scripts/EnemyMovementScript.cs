@@ -40,6 +40,8 @@ public class EnemyMovementScript : MonoBehaviour
     private GameObject wayPointFinal;
 
     Rigidbody2D rb;
+    Animator bRat;
+    Animator fRat;
 
     public float speed;
     public int currentPoint;
@@ -101,6 +103,9 @@ public class EnemyMovementScript : MonoBehaviour
         wayPointFinal = GameObject.FindWithTag("Waypoint_Final");
 
         rb = GetComponent<Rigidbody2D>();
+        // bRat & fRat Anim
+        bRat = GetComponent<Animator>();
+        fRat = GetComponent<Animator>();
         rb.AddForce(new Vector2(0, 1400));
 
     }
@@ -188,6 +193,8 @@ public class EnemyMovementScript : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 hit = true;
+                bRat.SetTrigger("Hurt");
+                fRat.SetTrigger("Hurt");
             }
         }
     }
@@ -212,6 +219,13 @@ public class EnemyMovementScript : MonoBehaviour
                 transform.position = new Vector2(wayPoint.transform.position.x, transform.position.y);
                 rb.velocity = Vector2.zero;
                 climbing = true;
+                bRat.SetBool("isClimbing", true);
+                fRat.SetBool("isClimbing", true);
+            }
+            else
+            {
+                bRat.SetBool("isClimbing", false);
+                fRat.SetBool("isClimbing", false);
             }
         }
         else

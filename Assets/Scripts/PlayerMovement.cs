@@ -43,7 +43,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         FacingRight();
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
+        // Made a Float to initiate movement animation
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+        Snake.SetFloat("moveSpeed", Mathf.Abs(horizontalInput));
 
         if (facingRight)
         {
@@ -58,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(jumpSoundClip, transform.position, 0.14f);
             rb.AddForce(new Vector2(rb.velocity.x, jump));
+            // Jump trigger
+            Snake.SetTrigger("Jump");
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -67,8 +72,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 GameObject shot = Instantiate(shotPrefab, emitter.transform.position, Quaternion.identity);
                 SnakeBullet sb = shot.gameObject.GetComponent<SnakeBullet>();
-                // Anim for Shoot Trigger
-                Snake.SetTrigger("Shoot");
+                
                 if (facingRight)
                 {
                     sb.ShootRight();
@@ -81,7 +85,25 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        // Grounded param
+        if (IsGrounded())
+        {
+            Snake.SetBool("isGrounded", true);
+        }
+        else
+        {
+            Snake.SetBool("isGrounded", false);
+        }
         
+        // SpriteFlip 
+        if (facingRight)
+        {
+            pSprite.flipX = false;
+        }
+        else
+        {
+            pSprite.flipX = true;
+        }
     }
 
     private bool IsGrounded()

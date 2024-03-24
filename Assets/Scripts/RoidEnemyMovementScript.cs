@@ -40,6 +40,7 @@ public class RoidEnemyMovementScript : MonoBehaviour
     private GameObject wayPointFinal;
 
     Rigidbody2D rb;
+    Animator rRat;
 
     public float speed;
     public int currentPoint;
@@ -100,6 +101,8 @@ public class RoidEnemyMovementScript : MonoBehaviour
         wayPointFinal = GameObject.FindWithTag("Waypoint_Final");
 
         rb = GetComponent<Rigidbody2D>();
+        // Roid Anim
+        rRat = GetComponent<Animator>();
 
         stop = true;
         StartCoroutine(Punch());
@@ -120,6 +123,7 @@ public class RoidEnemyMovementScript : MonoBehaviour
             if ((Random.Range(0, 10)) == 1)
             {
                 Instantiate(shotPrefab, transform.position, Quaternion.identity);
+                rRat.SetTrigger("Punch");
             }
             currWaitTime = 5;
         }
@@ -184,6 +188,7 @@ public class RoidEnemyMovementScript : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 StartCoroutine(DisableCollision());
                 stop = true;
+                rRat.SetTrigger("Hurt");
             }
         }
     }
@@ -208,6 +213,11 @@ public class RoidEnemyMovementScript : MonoBehaviour
                 transform.position = new Vector2(wayPoint.transform.position.x, transform.position.y);
                 rb.velocity = Vector2.zero;
                 climbing = true;
+                rRat.SetBool("isClimbing", true);
+            }
+            else
+            {
+                rRat.SetBool("isClimbing", false);
             }
         }
         else
@@ -356,7 +366,9 @@ public class RoidEnemyMovementScript : MonoBehaviour
 
     private IEnumerator Punch()
     {
+        rRat.SetBool("isBreak", true);
         yield return new WaitForSeconds(1f);
         stop = false;
+        rRat.SetBool("isBreak", false);
     }
 }
