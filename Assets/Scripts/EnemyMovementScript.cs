@@ -40,8 +40,13 @@ public class EnemyMovementScript : MonoBehaviour
     private GameObject wayPointFinal;
 
     Rigidbody2D rb;
+<<<<<<< HEAD
     Animator fastRat_Anim;
     Animator basicRat_Anim;
+=======
+    Animator bRat_Anim;
+    SpriteRenderer bR_SpriteRenderer;
+>>>>>>> animations
 
     public float speed;
     public int currentPoint;
@@ -100,6 +105,7 @@ public class EnemyMovementScript : MonoBehaviour
         chooser = Random.Range(0, wayPoint6s.Length);
         wayPoint6 = wayPoint6s[chooser];
 
+<<<<<<< HEAD
         wayPointFinal = GameObject.FindWithTag("Waypoint_Final");
 
         basicRat_Anim = GetComponent<Animator>();
@@ -107,6 +113,16 @@ public class EnemyMovementScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(new Vector2(0, 1400));
 
+=======
+        bRat_Anim = GetComponent<Animator>();
+        bR_SpriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        
+        if (currentPoint == 0)
+        {
+            rb.AddForce(new Vector2(0, 1400));
+        }
+>>>>>>> animations
     }
     
     
@@ -186,6 +202,7 @@ public class EnemyMovementScript : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 hit = true;
+<<<<<<< HEAD
                 StartCoroutine(DisableCollision());
             }
             else
@@ -194,6 +211,9 @@ public class EnemyMovementScript : MonoBehaviour
                 hit = true;
                 fastRat_Anim.SetTrigger("isHurt");
                 basicRat_Anim.SetTrigger("Hurt");
+=======
+                bRat_Anim.SetTrigger("Hurt");
+>>>>>>> animations
             }
         }
     }
@@ -218,6 +238,7 @@ public class EnemyMovementScript : MonoBehaviour
                 transform.position = new Vector2(wayPoint.transform.position.x, transform.position.y);
                 rb.velocity = Vector2.zero;
                 climbing = true;
+<<<<<<< HEAD
                 fastRat_Anim.SetBool("isClimbing", true);
                 basicRat_Anim.SetBool("isClimbing", true);
             }
@@ -225,6 +246,13 @@ public class EnemyMovementScript : MonoBehaviour
             {
                 fastRat_Anim.SetBool("isClimbing", false);
                 basicRat_Anim.SetBool("isClimbing", false);
+=======
+                bRat_Anim.SetBool("isClimbing", true);
+            }
+            else
+            {
+                bRat_Anim.SetBool("isClimbing", false);
+>>>>>>> animations
             }
         }
         else
