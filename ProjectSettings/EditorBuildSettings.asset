@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TutorialScreen.unity
     guid: c85e01d1dc11b2c4386a35322f8f7df3
-  - enabled: 0
-    path: Assets/Scenes/BaseLevel.unity
-    guid: 4de939618683d3040bde7cfd09638dda
   - enabled: 1
     path: Assets/Scenes/TheLevel.unity
     guid: c942c0784b3f5ae48bb6c32cf1d49a3c
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: e88b4cce1962dcf4ea6524ee95193edb
   m_configObjects: {}
