@@ -30,11 +30,15 @@ public class EnemyController : MonoBehaviour
     private int randSpawn;
     public int currNum;
     public int currPoint;
-    private bool done = false;
+    public bool done = false;
+    public float waitUntilPowerup;
+    private float currWait;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        currWait = waitUntilPowerup;
         //spawntime
         currWaitTime = waitTimeBeforeSpawn;
         //score
@@ -45,6 +49,21 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currWait > 0)
+        {
+            currWait -= Time.deltaTime;
+        }
+        else
+        {
+            if (!done)
+            {
+                Instantiate(powerup, new Vector2(spawnPoint_powerup.transform.position.x, spawnPoint_powerup.transform.position.y), Quaternion.identity);
+                done = true;
+                currWait = waitUntilPowerup;
+                Debug.Log("spawned");
+            }
+        }
+
         scoreCount = scoreScript.score;
         if (scoreCount < 100)
         {
@@ -61,11 +80,6 @@ public class EnemyController : MonoBehaviour
         else if (scoreCount < 1500)
         {
             waitTimeBeforeSpawn = 1.5f;
-            if (!done)
-            {
-                Instantiate(powerup, new Vector2(spawnPoint_powerup.transform.position.x, spawnPoint_powerup.transform.position.y), Quaternion.identity);
-                done = true;
-            }
         }
         else if (scoreCount < 2000)
         {

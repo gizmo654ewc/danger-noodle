@@ -50,7 +50,7 @@ public class EnemyMovementScript : MonoBehaviour
     private bool hit = false;
     private bool doublehit = false;
     public bool s3 = false;
-    private float fuckyoutimer = 180f;
+    private float fuckyoutimer = 100f;
     private float currFYT;
     private bool done = false;
 
@@ -280,8 +280,7 @@ public class EnemyMovementScript : MonoBehaviour
         
         if (collision.gameObject.CompareTag("KillPlane"))
         {
-            AudioSource.PlayClipAtPoint(scoreSoundClip, transform.position, 1f);
-            Debug.Log("did it");
+            AudioSource.PlayClipAtPoint(scoreSoundClip, transform.position, 1.5f);
             scoreScript.UpdateScore(scoreCount);
             Destroy(this.gameObject);
         }
@@ -337,7 +336,6 @@ public class EnemyMovementScript : MonoBehaviour
             currentPoint = 2;
             if (transform.position.x < wayPoint3_S.transform.position.x + 3 && transform.position.x > wayPoint3_S.transform.position.x - 1.5f)
             {
-                Debug.Log("s3 is now true");
                 s3 = true;
             }
             else { s3 = false; }

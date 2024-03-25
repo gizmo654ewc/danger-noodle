@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject shotPrefab;
     [SerializeField] private GameObject emitter;
+    [SerializeField] private GameObject enemyController;
+    EnemyController ec;
 
     [SerializeField] private AudioClip jumpSoundClip;
     [SerializeField] private AudioClip shootSoundClip;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ec = enemyController.GetComponent<EnemyController>();
         rb = GetComponent<Rigidbody2D>();
         // Animator & Sprite Flip Components
         Snake = GetComponent<Animator>();
@@ -71,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded() && rb.velocity.y == 0)
         {
-            AudioSource.PlayClipAtPoint(jumpSoundClip, transform.position, 0.24f);
+            AudioSource.PlayClipAtPoint(jumpSoundClip, transform.position, 1f);
             rb.AddForce(new Vector2(rb.velocity.x, jump));
             // Jump trigger
             Snake.SetTrigger("Jump");
@@ -79,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            AudioSource.PlayClipAtPoint(shootSoundClip, transform.position, 0.18f);
+            AudioSource.PlayClipAtPoint(shootSoundClip, transform.position, .6f);
             if (currWait <= 0)
             {
                 GameObject shot = Instantiate(shotPrefab, emitter.transform.position, Quaternion.identity);
@@ -106,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
+                    AudioSource.PlayClipAtPoint(shootSoundClip, transform.position, .6f);
                     GameObject shot = Instantiate(shotPrefab, emitter.transform.position, Quaternion.identity);
                     SnakeBullet sb = shot.gameObject.GetComponent<SnakeBullet>();
 
@@ -171,6 +175,7 @@ public class PlayerMovement : MonoBehaviour
         {
             powerup = true;
             currPT += powerupTime;
+            ec.done = false;
             Destroy(collision.gameObject);
         }
     }
