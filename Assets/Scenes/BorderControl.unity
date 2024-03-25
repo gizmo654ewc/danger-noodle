@@ -269,6 +269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Snake
       objectReference: {fileID: 0}
+    - target: {fileID: 6349601787756768363, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 5077686427680941910, guid: 7bf1771710d76fc4db64272ea049c894, type: 2}
     - target: {fileID: 6693305974376360939, guid: fb19fd1322ca8a04c861acb0736e646e, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -16598,6 +16602,134 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4647839194876211322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1196061016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1196061018}
+  - component: {fileID: 1196061017}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1196061017
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196061016}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -4024062590249394073, guid: 7bf1771710d76fc4db64272ea049c894, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 845e48bdc6000c94b85223f240a29e21, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.023
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1196061018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196061016}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.858641, y: 25.79534, z: 0.13822572}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1242376941
 GameObject:
   m_ObjectHideFlags: 0
@@ -20738,12 +20870,14 @@ MonoBehaviour:
   enemy_1: {fileID: 2252304560076441205, guid: 701e0264c975be544a3b6dfcb0956351, type: 3}
   enemy_2: {fileID: 2252304560076441205, guid: fe8a35aceee34034c9b75827fcca26ac, type: 3}
   enemy_3: {fileID: 2252304560076441205, guid: caa3721dc56ba614ea06b0b7e757feca, type: 3}
+  powerup: {fileID: 0}
   spawnPoint_0: {fileID: 3524364632182194222}
   spawnPoint_1: {fileID: 45549316}
   spawnPoint_2: {fileID: 669131336}
   spawnPoint_3: {fileID: 608763739}
   spawnPoint_4: {fileID: 1145882545}
   spawnPoint_5: {fileID: 63593721}
+  spawnPoint_powerup: {fileID: 0}
   currNum: 0
   currPoint: 0
 --- !u!1 &8063523090506454584
@@ -20846,3 +20980,4 @@ SceneRoots:
   - {fileID: 1077394981}
   - {fileID: 1575091241}
   - {fileID: 2105475917}
+  - {fileID: 1196061018}
