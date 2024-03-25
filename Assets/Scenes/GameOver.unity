@@ -1537,11 +1537,11 @@ Transform:
   m_GameObject: {fileID: 929957366}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.52, y: -171.52, z: -11520}
-  m_LocalScale: {x: 128, y: 128, z: 128}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.09, y: -0.41, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 2011146193}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1137000439
 GameObject:
@@ -1571,15 +1571,15 @@ RectTransform:
   m_GameObject: {fileID: 1137000439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 378965306}
   m_Father: {fileID: 2011146193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -531.38}
+  m_AnchoredPosition: {x: 0, y: -273.94}
   m_SizeDelta: {x: 577.62, y: 108.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1137000441
@@ -1820,14 +1820,14 @@ RectTransform:
   m_GameObject: {fileID: 1698893820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.54, y: 0.54, z: 0.54}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2011146193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 270}
+  m_AnchoredPosition: {x: 0, y: 202.1}
   m_SizeDelta: {x: 435.83, y: 359.53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1698893822
@@ -1970,7 +1970,6 @@ RectTransform:
   m_Children:
   - {fileID: 1698893821}
   - {fileID: 1137000440}
-  - {fileID: 929957368}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2030,5 +2029,6 @@ SceneRoots:
   - {fileID: 1175755766}
   - {fileID: 2011146193}
   - {fileID: 752401036}
+  - {fileID: 929957368}
   - {fileID: 2068654196}
   - {fileID: 15959547}

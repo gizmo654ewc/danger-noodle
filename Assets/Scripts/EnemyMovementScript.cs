@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyMovementScript : MonoBehaviour
 {
@@ -190,7 +191,7 @@ public class EnemyMovementScript : MonoBehaviour
             }
             else if (currentPoint >= 7)
             {
-                Debug.Log("beated");
+                SceneManager.LoadSceneAsync(3);
             }
         }
         else

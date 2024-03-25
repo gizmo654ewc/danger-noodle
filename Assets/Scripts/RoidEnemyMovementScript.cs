@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoidEnemyMovementScript : MonoBehaviour
 {
@@ -173,7 +174,7 @@ public class RoidEnemyMovementScript : MonoBehaviour
             }
             else if (currentPoint >= 7)
             {
-
+                SceneManager.LoadSceneAsync(3);
             }
         }
     }
